@@ -8,6 +8,7 @@ const crypto = require("crypto");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0"; // Required for Render/cloud deployment
 
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
@@ -292,8 +293,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "An unexpected error occurred." });
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`LifeLink server running at http://localhost:${PORT}`);
+const server = app.listen(PORT, HOST, () => {
+  console.log(`LifeLink server running at http://${HOST}:${PORT}`);
 });
 
 module.exports = { app, server };
