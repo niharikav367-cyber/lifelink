@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CB-01",
+    "name": "Red Cross Central Blood Bank",
+    "type": "Blood Bank",
+    "area": "Vidyanagar, Hyderabad",
+    "phone": "040-27633087",
+    "stock_units": 142,
+    "emergency_24x7": true
+  },
+  {
+    "id": "CB-02",
+    "name": "Gandhi Hospital Blood Centre",
+    "type": "Government Hospital",
+    "area": "Musheerabad, Secunderabad",
+    "phone": "040-27505566",
+    "stock_units": 88,
+    "emergency_24x7": true
+  },
+  {
+    "id": "CB-03",
+    "name": "Osmania General Blood Centre",
+    "type": "Government Hospital",
+    "area": "Afzal Gunj, Hyderabad",
+    "phone": "040-24600121",
+    "stock_units": 110,
+    "emergency_24x7": true
+  },
+  {
+    "id": "CB-04",
+    "name": "Rotary Challa Blood Bank",
+    "type": "Charitable Blood Bank",
+    "area": "Ameerpet, Hyderabad",
+    "phone": "040-23746655",
+    "stock_units": 65,
+    "emergency_24x7": true
+  }
+]

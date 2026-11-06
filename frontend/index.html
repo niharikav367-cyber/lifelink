@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b3a">
+  <title>LifeLink — Smart Blood Bank & Emergency Donor Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a class="brand" href="#" id="brand-logo">
+        <span class="brand-mark">✚</span>
+        <span>life<span class="brand-light">link</span><small>CARE, CONNECTED.</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-link active" data-view="overview" id="nav-overview">
+          <span class="nav-icon">◫</span> Overview
+        </button>
+        <button class="nav-link" data-view="requests" id="nav-requests">
+          <span class="nav-icon">♡</span> Blood requests <span class="badge-count" id="nav-requests-count">0</span>
+        </button>
+        <button class="nav-link" data-view="donors" id="nav-donors">
+          <span class="nav-icon">♧</span> Donor network
+        </button>
+        <button class="nav-link" data-view="centres" id="nav-centres">
+          <span class="nav-icon">⌂</span> Blood centres
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✦</span>
+          <b>Every second matters.</b>
+          <p>LifeLink connects patients to participating care centres and voluntary donors.</p>
+          <a href="tel:112" class="emergency-link">Emergency hotline · 112 ↗</a>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar">NL</div>
+          <div>
+            <b>Niharika's Workspace</b>
+            <small id="current-role-label">Patient / Family</small>
+          </div>
+          <span class="online-dot" title="Network Connected"></span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="mobile-brand">
+          <span class="brand-mark">✚</span> life<span class="brand-light">link</span>
+        </div>
+        <div class="crumb">Workspace <span>/</span> <b id="page-title">Overview</b></div>
+        <div class="top-actions">
+          <span class="status-indicator" id="connection-pill">
+            <i class="dot-live"></i> <span id="connection-status-text">LIVE NETWORK</span>
+          </span>
+          <select id="language" aria-label="Choose language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option disabled>──────── Regional languages ────────</option>
+            <option value="ta">Tamil</option>
+            <option value="kn">Kannada</option>
+            <option value="bn">Bengali</option>
+            <option value="mr">Marathi</option>
+          </select>
+          <button class="icon-button" title="View Notifications" id="notif-btn" aria-label="Notifications">
+            🔔<span class="notif-dot" id="notif-dot"></span>
+          </button>
+          <button class="avatar top-avatar" title="Niharika's Profile">NL</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- Welcome Row & Role Switcher -->
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="pulse"></span> COMMUNITY BLOOD NETWORK</div>
+            <h1 id="greeting">Welcome to LifeLink <span>✳</span></h1>
+            <p class="subhead" id="subhead-text">A coordinated network connecting patients, verified blood centres, and voluntary donors.</p>
+          </div>
+          <div class="role-switch">
+            <label for="role">VIEW WORKSPACE AS</label>
+            <select id="role">
+              <option value="patient">Patient / Family</option>
+              <option value="donor">Voluntary Donor</option>
+              <option value="bank">Blood Bank Staff</option>
+              <option value="hospital">Hospital Coordinator</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Role Banner Notification -->
+        <div class="role-banner" id="role-banner">
+          <span class="role-banner-icon">ℹ</span>
+          <span id="role-banner-text">Viewing as <strong>Patient / Family</strong>. You can submit emergency blood requests and search nearby blood centres.</span>
+        </div>
+
+        <!-- ================= VIEW 1: OVERVIEW ================= -->
+        <section class="view-panel active" id="view-overview">
+          <!-- Hero Grid -->
+          <div class="hero-grid">
+            <article class="hero-card">
+              <div class="hero-copy">
+                <span class="hero-kicker">WHEN EVERY MOMENT COUNTS</span>
+                <h2>Help can start<br>with one connection.</h2>
+                <p>Raise an urgent blood request to reach verified blood centres and registered community donors across your area.</p>
+                <button class="sos-button" id="sos-open">
+                  <span class="sos-cross">✚</span>
+                  <span>
+                    <b>Request blood support</b>
+                    <small>Start an emergency request</small>
+                  </span>
+                  <span class="sos-arrow">↗</span>
+                </button>
+                <small class="hero-note">For life-threatening medical emergencies, call India's emergency helpline <b>112</b> immediately.</small>
+              </div>
+              <div class="hero-art">
+                <div class="art-orbit orbit-one"></div>
+                <div class="art-orbit orbit-two"></div>
+                <div class="blood-bag">
+                  <svg viewBox="0 0 180 250" role="img" aria-label="Illustration of a blood donation bag">
+                    <path d="M73 13h34v16H73z" fill="#e9f5ef"/>
+                    <path d="M82 28v13h16V28" fill="none" stroke="#e9f5ef" stroke-width="5"/>
+                    <rect x="31" y="40" width="118" height="164" rx="22" fill="#fff" stroke="#d7e8df" stroke-width="4"/>
+                    <path d="M35 111h110v70a19 19 0 0 1-19 19H54a19 19 0 0 1-19-19z" fill="#df625d"/>
+                    <path d="M35 111c25-10 40 9 60 0s34-8 55 0" fill="none" stroke="#f28b7d" stroke-width="4"/>
+                    <path d="M90 72v25M78 84.5h24" stroke="#df625d" stroke-width="7" stroke-linecap="round"/>
+                    <text x="90" y="151" text-anchor="middle" font-family="Manrope" font-size="13" font-weight="800" fill="#fff">LIFELINK</text>
+                    <path d="M90 204v19c0 8 8 8 8 15" fill="none" stroke="#e9f5ef" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M89 237h18" stroke="#e9f5ef" stroke-width="5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="floating-note note-top">
+                  <span class="note-check">✓</span>
+                  <span><b>Care, connected</b><small>Verified coordination</small></span>
+                </div>
+                <div class="floating-note note-bottom">
+                  <span class="drop">♥</span>
+                  <span><b>One community</b><small>Saving lives together</small></span>
+                </div>
+                <span class="art-spark spark-a">✳</span>
+                <span class="art-spark spark-b">✦</span>
+              </div>
+            </article>
+
+            <aside class="trust-card">
+              <div class="trust-top">
+                <span class="trust-icon">⌁</span>
+                <span class="verified-label">SAFETY FIRST</span>
+              </div>
+              <h3>Trust is part of care.</h3>
+              <p>Blood availability is confirmed directly with verified blood banks and hospitals. All testing, cross-matching, and issue procedures adhere to clinical guidelines.</p>
+              <div class="trust-rule"></div>
+              <div class="trust-foot">
+                <span class="shield">✓</span>
+                <div>
+                  <b>Strict Medical Governance</b>
+                  <small>No direct stranger transfusions</small>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Section Heading & Stats -->
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">LIVE NETWORK SNAPSHOT</span>
+              <h2>Your community at a glance</h2>
+            </div>
+            <span class="updated" id="updated-at">Updated just now</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-top"><span>Open requests</span><span class="stat-icon coral">♡</span></div>
+              <strong id="stat-requests">04</strong>
+              <small><span class="trend">↗</span> Active emergency requests</small>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span>Registered donors</span><span class="stat-icon green">♧</span></div>
+              <strong id="stat-donors">1,245</strong>
+              <small>Consenting community donors</small>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span>Partner centres</span><span class="stat-icon gold">⌂</span></div>
+              <strong id="stat-centres">24</strong>
+              <small>Hospitals & certified banks</small>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span>Response rate</span><span class="stat-icon blue">↗</span></div>
+              <strong id="stat-rate">78<span class="percent">%</span></strong>
+              <small>Average connection rate</small>
+            </div>
+          </div>
+
+          <!-- Lower Grid: Recent Requests & How It Works -->
+          <div class="lower-grid">
+            <section class="panel request-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">NEEDS ATTENTION</span>
+                  <h3>Recent blood requests</h3>
+                </div>
+                <button class="text-button" id="btn-view-all-requests">View all ↗</button>
+              </div>
+              <div id="overview-request-list" class="request-list"></div>
+            </section>
+
+            <section class="panel impact-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">HOW IT WORKS</span>
+                  <h3>From request to response</h3>
+                </div>
+                <span class="small-tag">4 simple steps</span>
+              </div>
+              <div class="steps">
+                <div class="step">
+                  <span>01</span>
+                  <div>
+                    <b>Share the need</b>
+                    <small>Submit patient blood group, units needed, and hospital details.</small>
+                  </div>
+                </div>
+                <div class="step">
+                  <span>02</span>
+                  <div>
+                    <b>Verify the request</b>
+                    <small>Participating blood centres and hospital coordinators review validity.</small>
+                  </div>
+                </div>
+                <div class="step">
+                  <span>03</span>
+                  <div>
+                    <b>Connect responsibly</b>
+                    <small>Eligible donors and nearby centres receive instant notifications.</small>
+                  </div>
+                </div>
+                <div class="step">
+                  <span>04</span>
+                  <div>
+                    <b>Confirm with care team</b>
+                    <small>Cross-matching and blood issuance take place at licensed facilities.</small>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 2: BLOOD REQUESTS ================= -->
+        <section class="view-panel" id="view-requests">
+          <div class="panel-header-row">
+            <div>
+              <h2>Active Blood Requests</h2>
+              <p class="subhead">Manage and monitor emergency blood requirements across hospitals.</p>
+            </div>
+            <button class="primary-button" id="btn-create-request">
+              <span>✚</span> Raise Blood Request
+            </button>
+          </div>
+
+          <!-- Filters & Search Toolbar -->
+          <div class="toolbar-card">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="request-search" placeholder="Search by hospital, area, ID or blood group...">
+            </div>
+            <div class="filter-group" id="blood-group-filters">
+              <button class="filter-pill active" data-filter="all">All</button>
+              <button class="filter-pill" data-filter="O+">O+</button>
+              <button class="filter-pill" data-filter="O-">O-</button>
+              <button class="filter-pill" data-filter="A+">A+</button>
+              <button class="filter-pill" data-filter="A-">A-</button>
+              <button class="filter-pill" data-filter="B+">B+</button>
+              <button class="filter-pill" data-filter="B-">B-</button>
+              <button class="filter-pill" data-filter="AB+">AB+</button>
+              <button class="filter-pill" data-filter="AB-">AB-</button>
+            </div>
+          </div>
+
+          <!-- Full Requests List -->
+          <div id="full-requests-container" class="full-requests-grid"></div>
+        </section>
+
+        <!-- ================= VIEW 3: DONOR NETWORK ================= -->
+        <section class="view-panel" id="view-donors">
+          <div class="panel-header-row">
+            <div>
+              <h2>Community Donor Network</h2>
+              <p class="subhead">Voluntary, consenting donors ready to assist when emergencies arise.</p>
+            </div>
+            <button class="primary-button" id="btn-register-donor">
+              <span>♧</span> Register as Donor
+            </button>
+          </div>
+
+          <div class="toolbar-card">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="donor-search" placeholder="Search donors by name, city, or area...">
+            </div>
+            <div class="filter-group" id="donor-status-filters">
+              <button class="filter-pill active" data-donor-filter="all">All Donors</button>
+              <button class="filter-pill" data-donor-filter="Available">Available</button>
+              <button class="filter-pill" data-donor-filter="On Call">On Call</button>
+            </div>
+          </div>
+
+          <!-- Donors Grid -->
+          <div id="donors-container" class="cards-grid"></div>
+        </section>
+
+        <!-- ================= VIEW 4: BLOOD CENTRES ================= -->
+        <section class="view-panel" id="view-centres">
+          <div class="panel-header-row">
+            <div>
+              <h2>Certified Blood Centres & Hospitals</h2>
+              <p class="subhead">Licensed facilities providing testing, cross-matching, and blood component issue.</p>
+            </div>
+            <a href="tel:112" class="emergency-pill-btn">
+              <span>📞 Emergency 112</span>
+            </a>
+          </div>
+
+          <div id="centres-container" class="cards-grid"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+          <div>LifeLink is a coordination platform, not a medical provider. <a href="tel:112">Call 112 for immediate medical emergencies.</a></div>
+          <span>© 2026 LifeLink Network · Developed by Niharika · Full Stack System</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= MODAL: REQUEST BLOOD SUPPORT ================= -->
+  <div class="modal-backdrop" id="request-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-req-title">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">EMERGENCY COORDINATION</span>
+          <h2 id="modal-req-title">Request blood support</h2>
+          <p>Share the essentials. Your request will be instantly visible across the LifeLink network.</p>
+        </div>
+        <button class="close-modal" id="modal-close" aria-label="Close modal">×</button>
+      </div>
+
+      <form id="request-form">
+        <div class="form-grid">
+          <label>
+            Blood group *
+            <select name="blood_group" id="req-blood-group" required>
+              <option value="">Select group</option>
+              <option value="A+">A+ (A Positive)</option>
+              <option value="A-">A- (A Negative)</option>
+              <option value="B+">B+ (B Positive)</option>
+              <option value="B-">B- (B Negative)</option>
+              <option value="AB+">AB+ (AB Positive)</option>
+              <option value="AB-">AB- (AB Negative)</option>
+              <option value="O+">O+ (O Positive)</option>
+              <option value="O-">O- (O Negative)</option>
+            </select>
+          </label>
+
+          <label>
+            Units needed *
+            <select name="units" id="req-units" required>
+              <option value="">Select units</option>
+              <option value="1">1 Unit (~450 ml)</option>
+              <option value="2">2 Units</option>
+              <option value="3">3 Units</option>
+              <option value="4">4 Units</option>
+            </select>
+          </label>
+
+          <label class="full">
+            Hospital / blood centre *
+            <input name="hospital" id="req-hospital" required placeholder="e.g. Yashoda Hospital / Gandhi Hospital">
+          </label>
+
+          <label>
+            City / area *
+            <input name="area" id="req-area" required placeholder="e.g. Secunderabad, Hyderabad">
+          </label>
+
+          <label>
+            Urgency level *
+            <select name="urgency" id="req-urgency">
+              <option value="Urgent">Urgent (Within 4 hours)</option>
+              <option value="Within 24 hours">Within 24 hours</option>
+              <option value="Planned">Planned (Scheduled surgery)</option>
+            </select>
+          </label>
+
+          <label class="full">
+            Contact phone number *
+            <input name="contact" id="req-contact" required inputmode="tel" placeholder="+91 98765 43210">
+          </label>
+
+          <label class="full">
+            Additional clinical notes / patient details
+            <textarea name="notes" id="req-notes" rows="2" placeholder="e.g. Surgery at 9 AM, ICU bed 12, Attendant contact"></textarea>
+          </label>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="req-consent" required>
+          <span>I confirm this information is accurate and understand this request must be verified by licensed blood centre personnel.</span>
+        </label>
+
+        <div class="form-alert">
+          <strong>Safety Policy:</strong> LifeLink does not arrange direct stranger transfusions. All blood testing, screening, and cross-matching take place at certified centres.
+        </div>
+
+        <button class="submit-button" type="submit" id="submit-req-btn">
+          Submit Blood Request <span>↗</span>
+        </button>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: REGISTER AS DONOR ================= -->
+  <div class="modal-backdrop" id="donor-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-donor-title">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">JOIN THE NETWORK</span>
+          <h2 id="modal-donor-title">Register as Voluntary Donor</h2>
+          <p>Join a community of compassionate donors ready to help save lives.</p>
+        </div>
+        <button class="close-modal" id="donor-modal-close" aria-label="Close modal">×</button>
+      </div>
+
+      <form id="donor-form">
+        <div class="form-grid">
+          <label class="full">
+            Full name *
+            <input name="name" id="donor-name" required placeholder="e.g. Sravan Kumar">
+          </label>
+
+          <label>
+            Blood group *
+            <select name="blood_group" id="donor-blood-group" required>
+              <option value="">Select group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </label>
+
+          <label>
+            City *
+            <input name="city" id="donor-city" required placeholder="e.g. Hyderabad">
+          </label>
+
+          <label>
+            Area / Locality
+            <input name="area" id="donor-area" placeholder="e.g. Kukatpally, Madhapur">
+          </label>
+
+          <label>
+            Contact phone number *
+            <input name="contact" id="donor-contact" required inputmode="tel" placeholder="+91 9XXXXXXXXX">
+          </label>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="donor-consent" required>
+          <span>I voluntarily consent to receive alerts when a patient in my area requires matching blood support.</span>
+        </label>
+
+        <button class="submit-button" type="submit" id="submit-donor-btn">
+          Complete Donor Registration <span>✓</span>
+        </button>
+        <p class="form-status" id="donor-form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
